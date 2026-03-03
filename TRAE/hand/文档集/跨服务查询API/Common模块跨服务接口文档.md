@@ -145,32 +145,26 @@ Map<Long, String> uomCodeMap = uoms.stream()
     .collect(Collectors.toMap(MtUomBaseVO::getUomId, MtUomBaseVO::getUomCode));
 ```
 
-### 示例2：批量生成编码
+### 示例2：批量生成编码（推荐）
 
 ```java
 import org.tarzan.boot.common.client.MtNumRangeRpcClient;
 import org.tarzan.common.domain.vo.MtNumRangeBatchInputVO;
 import org.tarzan.common.domain.vo.MtNumRangeBatchOutputVO;
 
-List<MtNumRangeBatchInputVO> inputVOs = Arrays.asList(
-    new MtNumRangeBatchInputVO("ORDER", "SO"),
-    new MtNumRangeBatchInputVO("ORDER", "PO")
-);
-List<MtNumRangeBatchOutputVO> outputVOs = mtNumRangeRpcClient.numRangeBatchGenerate(tenantId, inputVOs);
+MtNumRangeBatchInputVO inputVO = new MtNumRangeBatchInputVO("ORDER", "SO");
+List<MtNumRangeBatchOutputVO> outputVOs = mtNumRangeRpcClient.numrangeBatchGenerate(tenantId, inputVO);
 Map<String, String> codeMap = outputVOs.stream()
     .collect(Collectors.toMap(MtNumRangeBatchOutputVO::getObjectCode, MtNumRangeBatchOutputVO::getGeneratedCode));
 ```
 
-### 示例3：批量获取属性信息
+### 示例3：获取错误信息（推荐）
 
 ```java
 import org.tarzan.boot.common.client.MtCommonRpcClient;
-import org.tarzan.common.domain.vo.MtAttrVO;
 
-List<Long> attrIds = Arrays.asList(1L, 2L, 3L);
-List<MtAttrVO> attrs = mtCommonRpcClient.attrPropertyBatchGet(tenantId, attrIds);
-Map<Long, String> attrCodeMap = attrs.stream()
-    .collect(Collectors.toMap(MtAttrVO::getAttrId, MtAttrVO::getAttrCode));
+String errorMessage = mtCommonRpcClient.getErrorMessage(tenantId, "ERROR_CODE", "param1", "param2");
+System.out.println("错误信息：" + errorMessage);
 ```
 
 ## 注意事项

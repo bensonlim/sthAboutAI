@@ -224,16 +224,16 @@ Model模块包含了业务模型相关的跨服务接口，用于查询和管理
 
 ## 使用示例
 
-### 示例1：根据编码批量查询站点基本信息
+### 示例1：根据编码批量查询站点基本信息（推荐）
 
 ```java
 import org.tarzan.boot.model.client.MtSiteRpcClient;
-import org.tarzan.model.domain.vo.MtSiteBaseVO;
+import org.tarzan.model.domain.vo.MtModSiteBaseVO;
 
 List<String> siteCodes = Arrays.asList("SITE001", "SITE002");
-List<MtSiteBaseVO> sites = mtSiteRpcClient.codeLimitSiteBasicBatchQuery(tenantId, siteCodes);
+List<MtModSiteBaseVO> sites = mtSiteRpcClient.siteBasicByCodePropertyBatchGet(tenantId, siteCodes);
 Map<String, Long> siteIdMap = sites.stream()
-    .collect(Collectors.toMap(MtSiteBaseVO::getSiteCode, MtSiteBaseVO::getSiteId));
+    .collect(Collectors.toMap(MtModSiteBaseVO::getSiteCode, MtModSiteBaseVO::getSiteId));
 ```
 
 ## 注意事项
