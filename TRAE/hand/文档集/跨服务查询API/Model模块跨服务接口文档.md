@@ -2,27 +2,11 @@
 
 ## 概述
 
-Model模块包含了业务模型相关的跨服务接口，用于查询和管理各种业务实体，如物料、站点、区域、生产线、库位、工作单元和日历等。
+Model模块包含了业务模型相关的跨服务接口，用于查询和管理各种业务实体，如站点、区域、生产线、库位、工作单元和日历等。
 
 ## 接口列表
 
-### 1. MtMaterialRpcClient
-
-**类路径**：`org.tarzan.boot.model.client.MtMaterialRpcClient`
-
-**主要方法**：
-- `materialBasicInfoBatchGet` - 批量获取物料基本信息
-- `materialBasicPropertyGet` - 获取单个物料基本信息
-- `materialBasicPropertyBatchGet` - 批量获取物料基本信息
-- `codeLimitMaterialBasicBatchQuery` - 根据编码批量查询物料基本信息
-- `materialPropertyGet` - 获取单个物料详细信息
-- `materialPropertyBatchGet` - 批量获取物料详细信息
-- `materialLimitMaterialQuery` - 查询物料
-- `materialLimitMaterialBatchQuery` - 批量查询物料
-
-**用途**：用于查询物料相关信息，支持单个和批量查询，可根据编码查询物料基本信息。
-
-### 2. MtSiteRpcClient
+### 1. MtSiteRpcClient
 
 **类路径**：`org.tarzan.boot.model.client.MtSiteRpcClient`
 
@@ -129,19 +113,7 @@ Model模块包含了业务模型相关的跨服务接口，用于查询和管理
 
 ## 使用示例
 
-### 示例1：批量获取物料基本信息
-
-```java
-import org.tarzan.boot.model.client.MtMaterialRpcClient;
-import org.tarzan.model.domain.vo.MtMaterialBaseVO;
-
-List<Long> materialIds = Arrays.asList(1L, 2L, 3L);
-List<MtMaterialBaseVO> materials = mtMaterialRpcClient.materialBasicPropertyBatchGet(tenantId, materialIds);
-Map<Long, String> materialCodeMap = materials.stream()
-    .collect(Collectors.toMap(MtMaterialBaseVO::getMaterialId, MtMaterialBaseVO::getMaterialCode));
-```
-
-### 示例2：根据编码批量查询站点基本信息
+### 示例1：根据编码批量查询站点基本信息
 
 ```java
 import org.tarzan.boot.model.client.MtSiteRpcClient;
