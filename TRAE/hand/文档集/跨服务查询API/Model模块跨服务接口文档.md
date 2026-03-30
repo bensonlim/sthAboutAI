@@ -11,7 +11,7 @@ Model模块包含了业务模型相关的跨服务接口，用于查询和管理
 **类路径**：`org.tarzan.boot.model.client.MtSiteRpcClient`
 
 **主要方法**：
-- `siteBasicPropertyGet` - 获取单个站点基本信息
+- `[MtCalendarRpcClient方法文档.md](MtCalendarRpcClient%B7%BD%B7%A8%CE%C4%B5%B5.md)siteBasicPropertyGet` - 获取单个站点基本信息
 - `siteBasicPropertyBatchGet` - 批量获取站点基本信息
 - `siteBasicByCodePropertyBatchGet` - 根据编码批量获取站点基本信息
 - `siteSchedulePropertyGet` - 获取单个站点排程信息
